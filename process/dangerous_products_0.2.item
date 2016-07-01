@@ -8,7 +8,7 @@
     <contextParameter comment="" name="db_host" prompt="db_host?" promptNeeded="false" type="id_String" value="&quot;msywsledt153935.idcn.mil.intra&quot;"/>
     <contextParameter comment="" name="db_port" prompt="db_port?" promptNeeded="false" type="id_String" value="&quot;3306&quot;"/>
     <contextParameter comment="" name="HTML_location" prompt="HTML_location?" promptNeeded="false" type="id_String" value="&quot;H:/products/&quot;"/>
-    <contextParameter comment="" name="excel_location" prompt="excel_location?" promptNeeded="false" type="id_String" value="&quot;E:/talend/&quot;"/>
+    <contextParameter comment="" name="excel_location" prompt="excel_location?" promptNeeded="false" type="id_String" value="&quot;H:/xde/talend_rep/&quot;"/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" show="false"/>
@@ -115,7 +115,7 @@
     <routinesParameter id="_8qwkYFjNEdyj6eiqDt60Og" name="DemoRoutines"/>
     <routinesParameter id="_HKXfQGIZEd26GZmhFZLTPA" name="GetRandomPhoneNum"/>
   </parameters>
-  <node componentName="tMysqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="224">
+  <node componentName="tMysqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMysqlInput_1" show="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="MYSQL_5"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
@@ -131,7 +131,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#xD;&#xA;select distinct&#xD;&#xA;mn.nsn 'NSN'&#xD;&#xA;, replace(mn.nsn,'-','')  'NSN_short'&#xD;&#xA;, mn.description 'Description'&#xD;&#xA;, mn.description_nl 'Description_NL'&#xD;&#xA;, mn.description_fr 'Description_FR'&#xD;&#xA;, ma.man_org Man_Org&#xD;&#xA;from mrqr_nsn mn &#xD;&#xA;inner join mrqr_macodes ma on mn.macode=ma.macode&#xD;&#xA;inner join mrqr_nsn_security_codes mns on mn.nsn=mns.nsn and mns.type='SEC'&#xD;&#xA;where mn.util_status in (1,2) &#xD;&#xA;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&#xD;&#xA;select distinct&#xD;&#xA;mn.nsn 'NSN'&#xD;&#xA;, replace(mn.nsn,'-','')  'NSN_short'&#xD;&#xA;, mn.description 'Description'&#xD;&#xA;, mn.description_nl 'Description_NL'&#xD;&#xA;, mn.description_fr 'Description_FR'&#xD;&#xA;, ma.man_org Man_Org&#xD;&#xA;from mrqr_nsn mn &#xD;&#xA;inner join mrqr_macodes ma on mn.macode=ma.macode&#xD;&#xA;inner join mrqr_nsn_security_codes mns on mn.nsn=mns.nsn and mns.type='SEC'&#xD;&#xA;where mn.util_status in (1,2) and not(mn.un_code is null)&#xD;&#xA;&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -194,7 +194,7 @@
       <column comment="" key="false" length="4" name="MAN_ORG" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true">
         <mapperTableEntries name="var1" type="id_String"/>
       </varTables>
