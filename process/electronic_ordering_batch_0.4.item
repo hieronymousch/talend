@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<talendfile:ProcessType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.talend.org/mapper" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" defaultContext="Default">
+<talendfile:ProcessType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.talend.org/mapper" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" defaultContext="Default" jobType="Standard">
   <context confirmationNeeded="false" name="Default">
     <contextParameter comment="" name="EOB_contracts_tag" prompt="EOB_contracts_tag?" promptNeeded="false" type="id_String" value="&quot;[EOB]&quot;"/>
     <contextParameter comment="" name="db_dbname" prompt="db_dbname?" promptNeeded="false" type="id_String" value="&quot;dbnode&quot;"/>
-    <contextParameter comment="" name="db_host" prompt="db_host?" promptNeeded="false" type="id_String" value="&quot;localhost&quot;"/>
+    <contextParameter comment="" name="db_host" prompt="db_host?" promptNeeded="false" type="id_String" value="&quot;msywsledt153935.idcn.mil.intra&quot;"/>
     <contextParameter comment="" name="db_password" prompt="db_password?" promptNeeded="false" type="id_String" value="&quot;changeit&quot;"/>
     <contextParameter comment="" name="db_port" prompt="db_port?" promptNeeded="false" type="id_String" value="&quot;3306&quot;"/>
     <contextParameter comment="" name="db_user" prompt="db_user?" promptNeeded="false" type="id_String" value="&quot;root&quot;"/>
     <contextParameter comment="" name="smtp_host" prompt="smtp_host?" promptNeeded="false" type="id_String" value="&quot;smtpportal.idcn.mil.intra&quot;"/>
     <contextParameter comment="" name="smtp_port" prompt="smtp_port?" promptNeeded="false" type="id_String" value="&quot;25&quot;"/>
-    <contextParameter comment="" name="temp_file_storage" prompt="temp_file_storage?" promptNeeded="false" type="id_String" value="&quot;H:/tmp/&quot;"/>
-    <contextParameter comment="" name="smtp_from" prompt="smtp_from?" promptNeeded="false" type="id_String" value="&quot;EOB@mil.be&quot;"/>
+    <contextParameter comment="" name="temp_file_storage" prompt="temp_file_storage?" promptNeeded="false" type="id_String" value="&quot;E:/tmp/&quot;"/>
+    <contextParameter comment="" name="smtp_from" prompt="smtp_from?" promptNeeded="false" type="id_String" value="&quot;EOB@external.mil.be&quot;"/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" show="false"/>
@@ -498,7 +498,7 @@
   </node>
   <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="992" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSendMail_4" show="false"/>
-    <elementParameter field="TEXT" name="TO" value="&quot;jeroen@intranet.franssen.mobi&quot;"/>
+    <elementParameter field="TEXT" name="TO" value="&quot;jeroen.franssen@mil.be&quot;"/>
     <elementParameter field="TEXT" name="FROM" value="context.smtp_from"/>
     <elementParameter field="CHECK" name="NEED_PERSONAL_NAME" value="false"/>
     <elementParameter field="TEXT" name="PERSONAL_NAME" value="&quot;sender&quot;" show="false"/>
@@ -512,14 +512,14 @@
       <elementValue elementRef="CONTENT_TRANSFER_ENCODING" value="DEFAULT"/>
     </elementParameter>
     <elementParameter field="TABLE" name="HEADERS"/>
-    <elementParameter field="TEXT" name="SMTP_HOST" value="&quot;192.168.5.6&quot;"/>
-    <elementParameter field="TEXT" name="SMTP_PORT" value="25"/>
+    <elementParameter field="TEXT" name="SMTP_HOST" value="context.smtp_host"/>
+    <elementParameter field="TEXT" name="SMTP_PORT" value="context.smtp_port"/>
     <elementParameter field="CHECK" name="SSL" value="false"/>
     <elementParameter field="CHECK" name="STARTTLS" value="false"/>
     <elementParameter field="CLOSED_LIST" name="IMPORTANCE" value="Normal"/>
     <elementParameter field="CHECK" name="NEED_AUTH" value="false"/>
-    <elementParameter field="TEXT" name="AUTH_USERNAME" value="&quot;username&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="AUTH_PASSWORD" value="PoLvNyVG2XWndNDdLn696A==" show="false"/>
+    <elementParameter field="TEXT" name="AUTH_USERNAME" value="&quot;franssen.je&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="AUTH_PASSWORD" value="hWpXA4jbHuqGDIhQKtkhhg==" show="false"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
     <elementParameter field="CLOSED_LIST" name="TEXT_SUBTYPE" value="plain"/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
@@ -697,14 +697,14 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row1" show="false"/>
   </connection>
-  <connection connectorName="REJECT" label="row3" lineStyle="0" metaname="REJECT" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFilterRow_1" target="tMap_1">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row3" show="false"/>
-  </connection>
-  <connection connectorName="FILTER" label="row2" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFilterRow_1" target="tSendMail_1">
+  <connection connectorName="FILTER" label="row2" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFilterRow_1" target="tSendMail_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" value="false" show="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row2" show="false"/>
+  </connection>
+  <connection connectorName="REJECT" label="row3" lineStyle="0" metaname="REJECT" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFilterRow_1" target="tMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row3" show="false"/>
   </connection>
   <connection connectorName="FLOW" label="OrdersContracts" lineStyle="0" metaname="OrdersContracts" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tReplicate_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
@@ -748,14 +748,14 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row4" show="false"/>
   </connection>
-  <connection connectorName="REJECT" label="row6" lineStyle="8" metaname="REJECT" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFilterRow_2" target="tMap_1">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row6" show="false"/>
-  </connection>
-  <connection connectorName="FILTER" label="row5" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFilterRow_2" target="tSendMail_2">
+  <connection connectorName="FILTER" label="row5" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFilterRow_2" target="tSendMail_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" value="false" show="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row5" show="false"/>
+  </connection>
+  <connection connectorName="REJECT" label="row6" lineStyle="8" metaname="REJECT" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tFilterRow_2" target="tMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row6" show="false"/>
   </connection>
   <connection connectorName="FLOW" label="row7" lineStyle="0" metaname="tReplicate_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tReplicate_1" target="tFlowToIterate_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
