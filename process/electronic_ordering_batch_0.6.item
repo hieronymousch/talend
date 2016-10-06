@@ -133,7 +133,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select &#xD;&#xA;&#x9;mc.contract&#xD;&#xA;,  mp_mgr.email as 'MailMatMan'&#xD;&#xA;, mp_purorg.email as 'MailLeadServ'&#xD;&#xA;, mcd.email as 'MailContractor'&#xD;&#xA;from&#xD;&#xA;&#x9;mrqr_contracts mc inner join mrqr_contracts_years mcy on mc.contract=mcy.contract and &#xA; mcy.year=year(now())&#xD;&#xA;&#x9;inner join mrqr_organisms mo_mgr on mc.manager=mo_mgr.organism&#xD;&#xA;&#x9;inner join mrqr_persons mp_mgr on mp_mgr.idnr =mo_mgr.output_resp_idnr&#xD;&#xA;&#x9;inner join mrqr_organisms mo_purorg on mc.pur_org=mo_purorg.organism&#xD;&#xA;&#x9;inner join mrqr_persons mp_purorg on mp_purorg.idnr =mo_purorg.output_resp_idnr&#xD;&#xA;&#x9;inner join mrqr_companies_details mcd on mc.COMPANY_DETAILS_ID=mcd.company_details_id&#xD;&#xA;&#x9;inner join mrqr_contracts_years_imp mcyi on mc.contract=mcyi.contract&#xD;&#xA;where &#xD;&#xA;&#x9;mc.comments like '%[EOB]%'&#xD;&#xA;   and  mc.status='A'&#xD;&#xA;&#x9;and mcyi.year=year(now())&#xD;&#xA;&#x9;and mcyi.amount>0&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select &#xD;&#xA;&#x9;mc.contract&#xD;&#xA;,  mp_mgr.email as 'MailMatMan'&#xD;&#xA;, mp_purorg.email as 'MailLeadServ'&#xD;&#xA;-- TO BE UNCOMMENTED AFTER ACTIVATION, mcd.email as 'MailContractor'&#xD;&#xA;,  mp_mgr.email as 'MailContractor'&#xD;&#xA;from&#xD;&#xA;&#x9;mrqr_contracts mc inner join mrqr_contracts_years mcy on mc.contract=mcy.contract and &#xA; mcy.year=year(now())&#xD;&#xA;&#x9;inner join mrqr_organisms mo_mgr on mc.manager=mo_mgr.organism&#xD;&#xA;&#x9;inner join mrqr_persons mp_mgr on mp_mgr.idnr =mo_mgr.output_resp_idnr&#xD;&#xA;&#x9;inner join mrqr_organisms mo_purorg on mc.pur_org=mo_purorg.organism&#xD;&#xA;&#x9;inner join mrqr_persons mp_purorg on mp_purorg.idnr =mo_purorg.output_resp_idnr&#xD;&#xA;&#x9;inner join mrqr_companies_details mcd on mc.COMPANY_DETAILS_ID=mcd.company_details_id&#xD;&#xA;&#x9;inner join mrqr_contracts_years_imp mcyi on mc.contract=mcyi.contract&#xD;&#xA;&#x9;inner join  mrqr_dynamic_characteristics mdc on mdc.descriptor_value=mc.contract&#xD;&#xA;where &#xD;&#xA;&#x9; mc.status='A'&#xD;&#xA;&#x9;and mcyi.year=year(now())&#xD;&#xA;&#x9;and mcyi.amount>0&#xD;&#xA;   and mdc.udt_table='CONTRACTS'&#xD;&#xA;&#x9;and mdc.name='CON_EOB'&#xD;&#xA;   and mdc.value='YES'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -267,7 +267,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select distinct&#xD;&#xA;mos.contract&#xD;&#xA;, mos.ordernr&#xD;&#xA;, mos.pur_org &#xD;&#xA;, mp_LF.email as 'MailPurOrg'&#xD;&#xA;from&#xD;&#xA;&#x9;mrqr_orders mos &#xD;&#xA;&#x9;inner join mrqr_organisms mo_LF on mos.pur_org=mo_LF.organism&#xD;&#xA;&#x9;inner join mrqr_persons mp_LF on mp_LF.idnr =mo_LF.output_resp_idnr&#xD;&#xA;where &#xD;&#xA;&#x9;mos.status='A'&#xD;&#xA;and not(mos.contract is null)&#xD;&#xA;-- and mos.comments like '%[EOB]%'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select distinct&#xD;&#xA;mos.contract&#xD;&#xA;, mos.ordernr&#xD;&#xA;, mos.pur_org &#xD;&#xA;, mp_LF.email as 'MailPurOrg'&#xD;&#xA;from&#xD;&#xA;&#x9;mrqr_orders mos &#xD;&#xA;&#x9;inner join mrqr_organisms mo_LF on mos.pur_org=mo_LF.organism&#xD;&#xA;&#x9;inner join mrqr_persons mp_LF on mp_LF.idnr =mo_LF.output_resp_idnr&#xD;&#xA;    inner join  mrqr_dynamic_characteristics mdc on mdc.descriptor_value=mos.pur_org&#xD;&#xA;where &#xD;&#xA;&#x9;mos.status='A'&#xD;&#xA;   and not(mos.contract is null)&#xD;&#xA;   and mdc.udt_table='ORGANISMS'&#xD;&#xA;&#x9;and mdc.name='ORG_EOB_YN'&#xD;&#xA;  and mdc.descriptor='org_code'&#xD;&#xA; and mdc.value='YES'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -450,7 +450,7 @@
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select &#xD;&#xA;mom.reqno 'TopReqNo'&#xD;&#xA;, mom.nsn 'NSN'&#xD;&#xA;, mn.description 'Descr'&#xD;&#xA;, mom.reqqty 'TopQty'&#xD;&#xA;, mom.store 'OrderStore'&#xD;&#xA;, mrl.child_reqno 'ChildReqNo'&#xD;&#xA;, mrn.qty 'ChildReqQty'&#xD;&#xA;, mrn.store 'ChildReqStore'&#xD;&#xA;from&#xD;&#xA;&#x9;mrqr_orders mos inner join mrqr_orders_material mom on mos.ordernr=mom.ordernr&#xD;&#xA;&#x9;inner join mrqr_nsn mn on mn.nsn=mom.nsn&#xD;&#xA;&#x9;inner join mrqr_organisms mo_store on mom.store=mo_store.organism&#xD;&#xA;&#x9;inner join mrqr_persons mp_store on mp_store.idnr =mo_store.output_resp_idnr&#xD;&#xA;&#x9;left join mrqr_requisitions_links mrl on mom.reqno=mrl.reqno&#xD;&#xA;&#x9;left join mrqr_requisitions_nsn mrn on mrl.child_reqno=mrn.reqno and mrn.nsn=mom.nsn&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#xD;&#xA;where &#xD;&#xA;&#x9;mos.ordernr=?&#xD;&#xA;&#x9;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select &#xD;&#xA;mom.reqno 'TopReqNo'&#xD;&#xA;, mom.nsn 'NSN'&#xD;&#xA;, mnp.pn 'PartNumber'&#xD;&#xA;, mn.description 'Descr'&#xD;&#xA;, mom.reqqty 'TopQty'&#xD;&#xA;, mom.store 'OrderStore'&#xD;&#xA;, mrl.child_reqno 'ChildReqNo'&#xD;&#xA;, mrn.qty 'ChildReqQty'&#xD;&#xA;, mrn.store 'ChildReqStore'&#xD;&#xA;, mr.remark 'ChildComments'&#xD;&#xA;from&#xD;&#xA;&#x9;mrqr_orders mos inner join mrqr_orders_material mom on mos.ordernr=mom.ordernr&#xD;&#xA;&#x9;inner join mrqr_nsn mn on mn.nsn=mom.nsn&#xD;&#xA;&#x9;inner join mrqr_organisms mo_store on mom.store=mo_store.organism&#xD;&#xA;&#x9;inner join mrqr_persons mp_store on mp_store.idnr =mo_store.output_resp_idnr&#xD;&#xA;    left join mrqr_catalogue_items mci on mci.nsn=mom.nsn and mci.origin='PCOIN' and  &#xA; year(mci.reg_date)=year(now())&#xD;&#xA;&#x9;left join mrqr_nsn_pn_mfr mnp on mnp.nsn=mci.nsn and mnp.mfr=mci.supplier&#xD;&#xA;&#x9;left join mrqr_requisitions_links mrl on mom.reqno=mrl.reqno&#xD;&#xA;&#x9;left join mrqr_requisitions mr on mr.reqno=mrl.child_reqno&#xD;&#xA;&#x9;left join mrqr_requisitions_nsn mrn on mrl.child_reqno=mrn.reqno and mrn.nsn=mom.nsn&#xD;&#xA;&#xD;&#xA;where &#xD;&#xA;&#x9;mos.ordernr=?&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -502,6 +502,8 @@
       <elementValue elementRef="VALUE" value="&quot;NSN&quot;"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="Descr"/>
       <elementValue elementRef="VALUE" value="&quot;Descr&quot;"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="PartNumber"/>
+      <elementValue elementRef="VALUE" value="&quot;PartNumber&quot;"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="TopQty"/>
       <elementValue elementRef="VALUE" value="&quot;TopQty&quot;"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="OrderStore"/>
@@ -512,6 +514,8 @@
       <elementValue elementRef="VALUE" value="&quot;ChildReqQty&quot;"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="ChildReqStore"/>
       <elementValue elementRef="VALUE" value="&quot;ChildReqStore&quot;"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ChildComments"/>
+      <elementValue elementRef="VALUE" value="&quot;ChildComments&quot;"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="Contract"/>
       <elementValue elementRef="VALUE" value=""/>
       <elementValue elementRef="SCHEMA_COLUMN" value="ordernr"/>
@@ -522,11 +526,13 @@
       <column comment="" key="false" length="-1" name="TopReqNo" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="NSN" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Descr" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="PartNumber" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="TopQty" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="OrderStore" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="ChildReqNo" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="ChildReqQty" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="ChildReqStore" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ChildComments" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Contract" nullable="false" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="8" name="ordernr" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -549,20 +555,24 @@
     <elementParameter field="CHECK" name="IS_ALL_AUTO_SZIE" value="false"/>
     <elementParameter field="TABLE" name="AUTO_SZIE_SETTING">
       <elementValue elementRef="SCHEMA_COLUMN" value="TopReqNo"/>
-      <elementValue elementRef="IS_AUTO_SIZE" value="false"/>
+      <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="NSN"/>
-      <elementValue elementRef="IS_AUTO_SIZE" value="false"/>
+      <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="Descr"/>
-      <elementValue elementRef="IS_AUTO_SIZE" value="false"/>
+      <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="PartNumber"/>
+      <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="TopQty"/>
-      <elementValue elementRef="IS_AUTO_SIZE" value="false"/>
+      <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="OrderStore"/>
-      <elementValue elementRef="IS_AUTO_SIZE" value="false"/>
+      <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="ChildReqNo"/>
       <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="ChildReqQty"/>
       <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="ChildReqStore"/>
+      <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ChildComments"/>
       <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="Contract"/>
       <elementValue elementRef="IS_AUTO_SIZE" value="true"/>
@@ -585,11 +595,13 @@
       <column comment="" key="false" length="-1" name="TopReqNo" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="NSN" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Descr" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="PartNumber" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="TopQty" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="OrderStore" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="ChildReqNo" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="ChildReqQty" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="ChildReqStore" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ChildComments" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Contract" nullable="false" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="8" name="ordernr" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -1024,6 +1036,12 @@
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
       <elementValue elementRef="TRACE_COLUMN" value="OrderStore"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="PartNumber"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ChildComments"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
