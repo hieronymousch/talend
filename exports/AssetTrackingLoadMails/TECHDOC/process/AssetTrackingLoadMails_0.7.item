@@ -266,13 +266,13 @@
       <column comment="" key="false" length="-1" name="Logfile" nullable="false" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="latlong_correct" activateCondensedTool="true">
         <mapperTableEntries name="Device" expression="row6.Device " type="id_String"/>
         <mapperTableEntries name="Time" expression="new java.util.Date((long)(row6.Time*1000))" type="id_Date"/>
-        <mapperTableEntries name="Lat" expression="Float.parseFloat(StringHandling.CHANGE(row6.Lat, StringHandling.RIGHT(row6.Lat,5),&quot;&quot;) + &quot;.&quot; +StringHandling.RIGHT(row6.Lat,5))" type="id_Float"/>
-        <mapperTableEntries name="Long" expression="Float.parseFloat(StringHandling.CHANGE(row6.Long, StringHandling.RIGHT(row6.Long,5),&quot;&quot;) + &quot;.&quot;+StringHandling.RIGHT(row6.Long,5))" type="id_Float"/>
+        <mapperTableEntries name="Lat" expression="Float.parseFloat(StringHandling.CHANGE(row6.Lat + StringHandling.STR('0',5-StringHandling.LEN(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;&quot;))), StringHandling.RIGHT(row6.Lat + StringHandling.STR('0',5-StringHandling.LEN(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;&quot;))),5),&quot;&quot;) + &quot;.&quot; +StringHandling.RIGHT(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;&quot;) + StringHandling.STR('0',5-StringHandling.LEN(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;&quot;))),5))" type="id_Float"/>
+        <mapperTableEntries name="Long" expression="Float.parseFloat(StringHandling.CHANGE(row6.Lat + StringHandling.STR('0',5-StringHandling.LEN(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;&quot;))), StringHandling.RIGHT(row6.Lat + StringHandling.STR('0',5-StringHandling.LEN(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;&quot;))),5),&quot;&quot;) + &quot;.&quot; +StringHandling.RIGHT(row6.Lat + StringHandling.STR('0',5-StringHandling.LEN(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;&quot;))),5))" type="id_Float"/>
         <mapperTableEntries name="GPSFixAge" expression="row6.GPSFixAge " type="id_String"/>
         <mapperTableEntries name="Logfile" expression="((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;))" type="id_String"/>
       </outputTables>

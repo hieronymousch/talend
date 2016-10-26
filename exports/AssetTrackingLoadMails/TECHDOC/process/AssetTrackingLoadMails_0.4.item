@@ -266,13 +266,13 @@
       <column comment="" key="false" length="-1" name="Logfile" nullable="false" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="latlong_correct" activateCondensedTool="true">
         <mapperTableEntries name="Device" expression="row6.Device " type="id_String"/>
         <mapperTableEntries name="Time" expression="new java.util.Date((long)(row6.Time*1000))" type="id_Date"/>
-        <mapperTableEntries name="Lat" expression="Float.parseFloat(StringHandling.CHANGE(row6.Lat, StringHandling.RIGHT(row6.Lat,5),&quot;&quot;) + &quot;.&quot; +StringHandling.RIGHT(row6.Lat,5))" type="id_Float"/>
-        <mapperTableEntries name="Long" expression="Float.parseFloat(StringHandling.CHANGE(row6.Long, StringHandling.RIGHT(row6.Long,5),&quot;&quot;) + &quot;.&quot;+StringHandling.RIGHT(row6.Long,5))" type="id_Float"/>
+        <mapperTableEntries name="Lat" expression="Float.parseFloat(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;-&quot;) + StringHandling.CHANGE(StringUtils.rightPad(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;&quot;),5,&quot;0&quot;) StringHandling.RIGHT(StringUtils.rightPad(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;&quot;),5,&quot;0&quot;),5),&quot;&quot;) + &quot;.&quot; +StringHandling.RIGHT(StringUtils.rightPad(StringHandling.CHANGE(row6.Lat,&quot;-&quot;,&quot;&quot;),5,&quot;0&quot;),5))" type="id_Float"/>
+        <mapperTableEntries name="Long" expression="Float.parseFloat(StringHandling.CHANGE(row6.Long,&quot;-&quot;,&quot;-&quot;) + StringHandling.CHANGE(StringUtils.rightPad(StringHandling.CHANGE(row6.Long,&quot;-&quot;,&quot;&quot;),5,&quot;0&quot;), StringHandling.RIGHT(StringUtils.rightPad(StringHandling.CHANGE(row6.Long,&quot;-&quot;,&quot;&quot;),5,&quot;0&quot;),5),&quot;&quot;) + &quot;.&quot; +StringHandling.RIGHT(StringUtils.rightPad(StringHandling.CHANGE(row6.Long,&quot;-&quot;,&quot;&quot;),5,&quot;0&quot;),5))" type="id_Float"/>
         <mapperTableEntries name="GPSFixAge" expression="row6.GPSFixAge " type="id_String"/>
         <mapperTableEntries name="Logfile" expression="((String)globalMap.get(&quot;tFileList_1_CURRENT_FILE&quot;))" type="id_String"/>
       </outputTables>
@@ -501,6 +501,13 @@
       <column comment="" key="false" length="255" name="logfile" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tLibraryLoad" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="32" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLibraryLoad_1" show="false"/>
+    <elementParameter field="MODULE_LIST" name="LIBRARY" value="&quot;org.apache.commons.lang_2.6.0.v201404270220.jar&quot;"/>
+    <elementParameter field="TABLE" name="HOTLIBS"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;&#xA;import org.apache.commons.lang.StringUtils;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
   <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFileList_1" offsetLabelX="0" offsetLabelY="0" source="tFileList_1" target="tFileInputDelimited_1">
     <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" value="20" show="false"/>
@@ -551,6 +558,9 @@
     <elementParameter field="TEXT" name="NUMBER_PARALLEL" value="10"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="iterate3" show="false"/>
   </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tLibraryLoad_1" offsetLabelX="0" offsetLabelY="0" source="tLibraryLoad_1" target="tFileList_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk1" show="false"/>
+  </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileList_1" show="false"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
@@ -564,6 +574,11 @@
   </subjob>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHashInput_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLibraryLoad_1" show="false"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
