@@ -12,7 +12,7 @@
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="384" show="false"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="416" show="false"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="448" show="false"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" value="" show="false"/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" value="" show="false"/>
     <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" value="" show="false"/>
@@ -213,7 +213,7 @@
       <column comment="" key="false" length="50" name="FileName" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="0" posY="-256">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="-64" posY="-256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_1" show="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
@@ -271,7 +271,7 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tAggregateRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="-256">
+  <node componentName="tAggregateRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="0" posY="-352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tAggregateRow_1" show="false"/>
     <elementParameter field="TABLE" name="GROUPBYS">
       <elementValue elementRef="OUTPUT_COLUMN" value="NSN"/>
@@ -373,7 +373,7 @@
       <column comment="" key="false" length="-1" name="STATUS" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tAddCRCRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="-256">
+  <node componentName="tAddCRCRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="-352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tAddCRCRow_1" show="false"/>
     <elementParameter field="TABLE" name="IMPLICATION">
       <elementValue elementRef="SCHEMA_COLUMN" value="NSN"/>
@@ -413,7 +413,7 @@
       <column defaultValue="" key="false" length="255" name="CRC" nullable="true" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tConvertType" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="-192">
+  <node componentName="tConvertType" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="-256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tConvertType_1" show="false"/>
     <elementParameter field="CHECK" name="AUTOCAST" value="true"/>
     <elementParameter field="TABLE" name="MANUALTABLE" show="false"/>
@@ -447,7 +447,7 @@
       <column key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="576" posY="-192">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="288" posY="-256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_4" show="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
@@ -509,7 +509,7 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tMysqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="576" posY="-64">
+  <node componentName="tMysqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="-64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMysqlInput_2" show="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_oDZJgPWWEeWeV_l4N7P86Q" show="false"/>
@@ -550,7 +550,7 @@
       <column comment="" key="false" length="255" name="CRC" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tReplicate" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="-192">
+  <node componentName="tReplicate" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="-128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tReplicate_1" show="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tReplicate_1">
@@ -566,7 +566,7 @@
       <column comment="" key="false" length="-1" name="STATUS" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFilterColumns" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="992" posY="-320">
+  <node componentName="tFilterColumns" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="-224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFilterColumns_1" show="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFilterColumns_1">
@@ -574,7 +574,7 @@
       <column key="false" length="255" name="CRC" nullable="true" precision="0" sourceType="BIGINT" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMysqlOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1120" posY="-320">
+  <node componentName="tMysqlOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="864" posY="-224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMysqlOutput_1" show="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_oDZJgPWWEeWeV_l4N7P86Q" show="false"/>
@@ -636,7 +636,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="960" posY="-192">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="576" posY="-32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_3" show="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
@@ -669,7 +669,7 @@
       <column key="false" length="255" name="CRC" nullable="true" precision="0" sourceType="BIGINT" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="docs_generieke_consts">
         <mapperTableEntries name="header_start" expression="&quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD HTML 4.01//EN\&quot; \&quot;http://www.w3.org/TR/html4/strict.dtd\&quot;> &lt;html lang=\&quot;en\&quot;>&lt;meta http-equiv=\&quot;content-type\&quot; content=\&quot;text/html; charset=utf-8\&quot;>&lt;style> table, th, td {border: 1px solid black; border-collapse: collapse; background-color: #f1f1c1; } th, td {padding: 15px;}&lt;/style>&lt;head>&lt;title>&quot;" type="id_String" nullable="true"/>
@@ -683,7 +683,7 @@
         <mapperTableEntries name="DESCRIPTION_FR" expression="&quot;&lt;TR>&lt;TD>NSN Description FR: &lt;/TD>&lt;TD>&quot; +row15.DESCRIPTION_FR  +&quot;&lt;/TD>&quot;" type="id_String" nullable="true"/>
         <mapperTableEntries name="ALB" expression="&quot;&lt;TR>&lt;TD>NSN Additional name (ALB): &lt;/TD>&lt;TD>&quot; +row15.ALB + &quot;&lt;/TD>&quot;" type="id_String" nullable="true"/>
         <mapperTableEntries name="STATUS" expression="&quot;&lt;TR>&lt;TD>NSN Status: &lt;/TD>&lt;TD>&quot; +row15.STATUS + &quot;&lt;/TD>&quot;" type="id_String" nullable="true"/>
-        <mapperTableEntries name="MAN_ORG" expression="&quot;&lt;TR>&lt;TD>Man_Org: &lt;/TD>&lt;TD>&quot; + row15.MAN_ORG + &quot;&lt;/TD>&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="MAN_ORG" expression="&quot;&lt;TR>&lt;TD>MatMan: &lt;/TD>&lt;TD> &lt;a href=\&quot;http://opsnode.mil.intra/LRF/XMLWeb/ProcessDescriptor/descriptor/OPSNODE/STRUC_PERSONS/STRUC_PERSONS.xml?pRID=100032&amp;pLANG=EN&amp;pORG=&quot; + row15.MAN_ORG +&quot;\&quot;>&quot; + row15.MAN_ORG + &quot;&lt;/a>&lt;/TD>&quot; " type="id_String" nullable="true"/>
         <mapperTableEntries name="MACODE" expression="&quot;&lt;TR>&lt;TD>MACode: &lt;/TD>&lt;TD>&quot; + row15.MACODE + &quot;&lt;/TD>&quot;" type="id_String" nullable="true"/>
         <mapperTableEntries name="not_existing" expression="&quot;&lt;TR>&lt;TD>FileName: &lt;/td>&lt;td> &lt;B>Electronic version of the document doesn't exist. Contact the MatMgr shown above for more information.&lt;/b>&lt;/TD>&quot;" type="id_String" nullable="true"/>
         <mapperTableEntries name="CombinedFileAttributes" expression="&quot;&lt;TR>&lt;TD>Files: &lt;/TD>&lt;TD>&quot; + row15.CombinedFileAttributes + &quot;&lt;/TD>&quot; " type="id_String" nullable="true"/>
@@ -705,7 +705,7 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="-352">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="576" posY="-384">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogRow_1" show="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
@@ -729,7 +729,7 @@
       <column comment="" key="false" length="18" name="NSN" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1088" posY="-192">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="-32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogRow_2" show="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="true"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="false"/>
@@ -804,14 +804,14 @@
       <column key="false" length="255" name="CRC" nullable="true" precision="0" sourceType="BIGINT" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFlowToIterate" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1248" posY="-192">
+  <node componentName="tFlowToIterate" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="-32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFlowToIterate_2" show="false"/>
     <elementParameter field="CHECK" name="DEFAULT_MAP" value="true"/>
     <elementParameter field="TABLE" name="MAP" show="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFlowToIterate_2"/>
   </node>
-  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1376" posY="-192">
+  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="928" posY="-32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFixedFlowInput_2" show="false"/>
     <elementParameter field="TEXT" name="NB_ROWS" value="1"/>
     <elementParameter field="RADIO" name="USE_SINGLEMODE" value="true"/>
@@ -878,7 +878,7 @@
       <column comment="" key="false" length="-1" name="body_end" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1472" posY="-192">
+  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1056" posY="-32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileOutputDelimited_2" show="false"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" value="outputStream" show="false"/>
